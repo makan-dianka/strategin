@@ -1,0 +1,23 @@
+version: '3'
+services:
+  express:
+    build: .
+    container_name: express
+    volumes:
+      - .:/var/www/web
+    ports:
+      - 8000:8000
+    tty: true
+    # command: npm start
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    working_dir: /mongodb
+    volumes:
+      - ./mongodata:/mongodb
+    ports:
+      - 8081:8081
